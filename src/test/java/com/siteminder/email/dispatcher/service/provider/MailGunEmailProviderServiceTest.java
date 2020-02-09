@@ -33,7 +33,8 @@ public class MailGunEmailProviderServiceTest {
 
     @Before
     public void setUp() {
-        mailGunEmailProviderService = new MailGunEmailProviderService(restService);
+        mailGunEmailProviderService =
+                new MailGunEmailProviderService(restService, "https://api.mailgun.net/v3/", "api", "dummy");
     }
 
     @Test

@@ -36,19 +36,19 @@ public class MailGunEmailProviderService implements EmailProviderService {
     private static final String SUBJECT = "subject";
     private static final String TEXT = "text";
 
-    @Value("${email.mailGun.api.url}")
-    private String mailGunApiUrl;
+    private final String mailGunApiUrl;
+    private final String mailGunApiUser;
+    private final String mailGunApiPassword;
+    private final RestService<MailGunEmailResponse> restService;
 
-    @Value("${email.mailGun.api.user}")
-    private String mailGunApiUser;
-
-    @Value("${email.mailGun.api.password}")
-    private String mailGunApiPassword;
-
-    private RestService<MailGunEmailResponse> restService;
-
-    public MailGunEmailProviderService(RestService<MailGunEmailResponse> restService) {
+    public MailGunEmailProviderService(RestService<MailGunEmailResponse> restService,
+                                       @Value("${email.mailGun.api.url}") String mailGunApiUrl,
+                                       @Value("${email.mailGun.api.user}") String mailGunApiUser,
+                                       @Value("${email.mailGun.api.password}") String mailGunApiPassword) {
         this.restService = restService;
+        this.mailGunApiUrl = mailGunApiUrl;
+        this.mailGunApiUser = mailGunApiUser;
+        this.mailGunApiPassword = mailGunApiPassword;
     }
 
     @Override

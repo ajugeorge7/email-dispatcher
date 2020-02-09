@@ -4,7 +4,6 @@ import com.siteminder.email.dispatcher.exception.EmailDispatchException;
 import com.siteminder.email.dispatcher.model.EmailProviderRequest;
 import com.siteminder.email.dispatcher.model.EmailProviderResponse;
 import com.siteminder.email.dispatcher.service.provider.dto.SendGridEmailResponse;
-import com.siteminder.email.dispatcher.service.provider.dto.SendGridEmailResponse;
 import com.siteminder.email.dispatcher.service.rest.RestService;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +33,8 @@ public class SendGridEmailProviderServiceTest {
 
     @Before
     public void setUp() {
-        sendGridEmailProviderService = new SendGridEmailProviderService(restService);
+        sendGridEmailProviderService =
+                new SendGridEmailProviderService(restService, "https://api.sendgrid.com/v3/", "dummy-key");
     }
 
     @Test

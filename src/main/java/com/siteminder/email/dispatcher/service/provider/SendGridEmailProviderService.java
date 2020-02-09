@@ -29,16 +29,17 @@ public class SendGridEmailProviderService implements EmailProviderService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SendGridEmailProviderService.class);
 
-    @Value("${email.sendGrid.api.url}")
-    private String sendGridApiUrl;
 
-    @Value("${email.sendGrid.api.key}")
-    private String sendGridApiKey;
+    private final String sendGridApiUrl;
+    private final String sendGridApiKey;
+    private final RestService<SendGridEmailResponse> restService;
 
-    private RestService<SendGridEmailResponse> restService;
-
-    public SendGridEmailProviderService(RestService<SendGridEmailResponse> restService) {
+    public SendGridEmailProviderService(RestService<SendGridEmailResponse> restService,
+                                        @Value("${email.sendGrid.api.url}") String sendGridApiUrl,
+                                        @Value("${email.sendGrid.api.key}") String sendGridApiKey) {
         this.restService = restService;
+        this.sendGridApiUrl = sendGridApiUrl;
+        this.sendGridApiKey = sendGridApiKey;
     }
 
     @Override
